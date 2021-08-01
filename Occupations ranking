@@ -15,6 +15,6 @@ CASE
 WHEN Occupation = 'Actor' then Name
 end as Actor
 from OCCUPATIONS
-order by Name) a
+order by Name) 
 group by row_num
 order by row_num;
