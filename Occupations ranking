@@ -1,0 +1,20 @@
+SELECT max(Doctor), max(Professor), max(Singer), max(Actor)
+FROM
+( Select
+ROW_NUMBER() OVER (PARTITION BY Occupation order by Name) row_num, 
+CASE 
+WHEN Occupation = 'Doctor' then Name
+end as Doctor,
+CASE 
+WHEN Occupation = 'Professor' then Name
+end as Professor,
+CASE 
+WHEN Occupation = 'Singer' then Name
+end as Singer,
+CASE 
+WHEN Occupation = 'Actor' then Name
+end as Actor
+from OCCUPATIONS
+order by Name) a
+group by row_num
+order by row_num;
