@@ -1,0 +1,9 @@
+select hac.hacker_id, hac.name
+from Submissions sub
+join Challenges cha on cha.challenge_id = sub.challenge_id
+join Difficulty dif on dif.difficulty_level = cha.difficulty_level
+join Hackers hac on sub.hacker_id=hac.hacker_id 
+where sub.score=dif.score 
+group by hac.hacker_id, hac.name
+having count(hac.name) > 1
+order by count(hac.name) desc, hac.hacker_id;
